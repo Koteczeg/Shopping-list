@@ -1,0 +1,57 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical"
+    tools:context="com.tiger.listazakupow.AboutActivity"
+    android:weightSum="1">
+
+    <ImageView
+        android:id="@+id/computercat"
+        android:background="@drawable/computercat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginRight="70dp"
+        android:layout_marginTop="50dp"/>
+    <ImageView
+        android:id="@+id/pizzacat"
+        android:background="@drawable/pizzacat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="70dp"
+        android:layout_marginTop="20dp"/>
+    <ImageView
+        android:id="@+id/lazycat"
+        android:background="@drawable/lazycat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginRight="70dp"
+        android:layout_marginTop="20dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="197dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="20dp"
+        android:textAlignment="center"
+        android:text="Paweł Duszak\nB1 MiNI PW"
+        android:id="@+id/textView"
+        android:layout_weight="0.19" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Catch me up at duszakpawel@gmail.com"
+        android:textAlignment="center"
+        android:id="@+id/textView2"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_weight="1.07" />
+
+</LinearLayout>
