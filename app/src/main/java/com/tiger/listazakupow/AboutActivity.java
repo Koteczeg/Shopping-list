@@ -12,7 +12,7 @@ import android.widget.Button;
 /**
  Created by Tygrysek on 3/19/2016.
  **/
-public class AboutActivity extends AppCompatActivity implements AnimationEssentials
+public class AboutActivity extends AppCompatActivity
 {
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -28,23 +28,19 @@ public class AboutActivity extends AppCompatActivity implements AnimationEssenti
 
     private void SetBackButtonFeatures(Button backButton, final Animation animAlpha)
     {
-        backButton.getBackground().setColorFilter(lightblue, PorterDuff.Mode.MULTIPLY);
-        backButton.setOnClickListener(new View.OnClickListener()
-        {
+        backButton.getBackground().setColorFilter(getApplicationContext().getResources().getInteger(R.integer.lightblue), PorterDuff.Mode.MULTIPLY);
+        backButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(final View v)
-            {
+            public void onClick(final View v) {
                 v.startAnimation(animAlpha);
-                v.postDelayed(new Runnable()
-                {
+                v.postDelayed(new Runnable() {
                     @Override
-                    public void run()
-                    {
+                    public void run() {
                         finish();
                         Intent intent = new Intent(v.getContext(), MainActivity.class);
                         startActivity(intent);
                     }
-                }, delay);
+                }, getApplicationContext().getResources().getInteger(R.integer.delay));
             }
         });
     }

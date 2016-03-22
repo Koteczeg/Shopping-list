@@ -25,8 +25,8 @@
             android:label="@string/title_activity_about"
             android:screenOrientation="portrait"
             android:theme="@style/FullscreenTheme" />
-        <activity android:name=".ListingActivity"></activity>
-        <activity android:name=".EditWindow"></activity>
+        <activity android:name=".ListingActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".EditWindow" android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

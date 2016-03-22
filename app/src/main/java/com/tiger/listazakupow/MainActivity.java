@@ -11,7 +11,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 
-public class MainActivity extends AppCompatActivity implements AnimationEssentials
+public class MainActivity extends AppCompatActivity
 {
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -33,20 +33,21 @@ public class MainActivity extends AppCompatActivity implements AnimationEssentia
 
     private void SetExitButtonFeatures(Button exitButton)
     {
-        exitButton.getBackground().setColorFilter(lightblue, PorterDuff.Mode.MULTIPLY);
+        exitButton.getBackground().setColorFilter(getApplicationContext().getResources().getInteger(R.integer.lightblue), PorterDuff.Mode.MULTIPLY);
         exitButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
-                finish();
+                int pid = android.os.Process.myPid();
+                android.os.Process.killProcess(pid);
                 System.exit(0);
             }});
     }
 
     private void SetStartButtonFeatures(Button startButton, final Animation animAlpha)
     {
-        startButton.getBackground().setColorFilter(lightblue, PorterDuff.Mode.MULTIPLY);
+        startButton.getBackground().setColorFilter(getApplicationContext().getResources().getInteger(R.integer.lightblue), PorterDuff.Mode.MULTIPLY);
         startButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -62,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements AnimationEssentia
                         Intent intent = new Intent(v.getContext(), ListingActivity.class);
                         startActivity(intent);
                     }
-                }, delay);
+                }, getApplicationContext().getResources().getInteger(R.integer.delay));
 
             }
         });
@@ -70,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements AnimationEssentia
 
     private void SetAboutButtonFeatures(Button aboutButton, final Animation animAlpha)
     {
-        aboutButton.getBackground().setColorFilter(lightblue, PorterDuff.Mode.MULTIPLY);
+        aboutButton.getBackground().setColorFilter(getApplicationContext().getResources().getInteger(R.integer.lightblue), PorterDuff.Mode.MULTIPLY);
         aboutButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -86,7 +87,7 @@ public class MainActivity extends AppCompatActivity implements AnimationEssentia
                         Intent intent = new Intent(v.getContext(), AboutActivity.class);
                         startActivity(intent);
                     }
-                }, delay);
+                }, getApplicationContext().getResources().getInteger(R.integer.delay));
 
             }
         });

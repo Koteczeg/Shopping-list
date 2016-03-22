@@ -23,7 +23,7 @@ import java.util.List;
 /**
   Created by Tygrysek on 3/21/2016.
  **/
-public class EditWindow extends Activity implements AnimationEssentials {
+public class EditWindow extends Activity {
 
     List<String> lista;
 
@@ -68,7 +68,7 @@ public class EditWindow extends Activity implements AnimationEssentials {
                         Intent intent = new Intent(getApplicationContext(), ListingActivity.class);
                         startActivity(intent);
                     }
-                }, delay);
+                }, getApplicationContext().getResources().getInteger(R.integer.delay));
             }
         });
     }
@@ -89,14 +89,14 @@ public class EditWindow extends Activity implements AnimationEssentials {
             public void afterTextChanged(Editable s)
             {
                 String text = s.toString();
-                saveButton.getBackground().setColorFilter(text.isEmpty() ? lightgrey : lightblue, PorterDuff.Mode.MULTIPLY);
+                saveButton.getBackground().setColorFilter(text.isEmpty() ? getApplicationContext().getResources().getInteger(R.integer.lightgrey) : getApplicationContext().getResources().getInteger(R.integer.lightblue), PorterDuff.Mode.MULTIPLY);
             }
         });
     }
 
     private void SetCancelButtonFeatures(Button cancelButton, final Animation animAlpha)
     {
-        cancelButton.getBackground().setColorFilter(lightblue, PorterDuff.Mode.MULTIPLY);
+        cancelButton.getBackground().setColorFilter(getApplicationContext().getResources().getInteger(R.integer.lightblue), PorterDuff.Mode.MULTIPLY);
         cancelButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -112,7 +112,7 @@ public class EditWindow extends Activity implements AnimationEssentials {
                         Intent intent = new Intent(getApplicationContext(), ListingActivity.class);
                         startActivity(intent);
                     }
-                }, delay);
+                }, getApplicationContext().getResources().getInteger(R.integer.delay));
             }
         });
     }

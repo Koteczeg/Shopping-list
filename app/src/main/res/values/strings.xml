@@ -5,7 +5,9 @@
     <string name="startButtonMainMenuText">START</string>
     <string name="settingsMainMenuButtonText">USTAWIENIA</string>
     <string name="aboutAuthorMainMenuButtonText">O AUTORZE</string>
-
+    <integer name="delay">300</integer>
+    <integer name="lightblue">0xFF7ec0ee</integer>
+    <integer name="lightgrey">0xFF606060</integer>
     <string name="title_activity_about">AboutActivity</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>

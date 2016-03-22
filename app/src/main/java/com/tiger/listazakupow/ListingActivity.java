@@ -33,7 +33,7 @@ import java.util.List;
 /**
  Created by Tygrysek on 3/19/2016.
  **/
-public class ListingActivity extends AppCompatActivity implements AnimationEssentials
+public class ListingActivity extends AppCompatActivity
 {
     final List<String> list = new LinkedList<>();
     ListAdapter theAdapter;
@@ -68,15 +68,15 @@ public class ListingActivity extends AppCompatActivity implements AnimationEssen
         {
             @Override
             public void onClick(View v) {
-                removeButton.getBackground().setColorFilter(lightgrey, PorterDuff.Mode.MULTIPLY);
-                editButton.getBackground().setColorFilter(lightgrey, PorterDuff.Mode.MULTIPLY);
+                removeButton.getBackground().setColorFilter(getApplicationContext().getResources().getInteger(R.integer.lightgrey), PorterDuff.Mode.MULTIPLY);
+                editButton.getBackground().setColorFilter(getApplicationContext().getResources().getInteger(R.integer.lightgrey), PorterDuff.Mode.MULTIPLY);
             }
         });
         text.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                removeButton.getBackground().setColorFilter(lightgrey, PorterDuff.Mode.MULTIPLY);
-                editButton.getBackground().setColorFilter(lightgrey, PorterDuff.Mode.MULTIPLY);
+                removeButton.getBackground().setColorFilter(getApplicationContext().getResources().getInteger(R.integer.lightgrey), PorterDuff.Mode.MULTIPLY);
+                editButton.getBackground().setColorFilter(getApplicationContext().getResources().getInteger(R.integer.lightgrey), PorterDuff.Mode.MULTIPLY);
                 return false;
             }
         });
@@ -84,28 +84,26 @@ public class ListingActivity extends AppCompatActivity implements AnimationEssen
 
     private void SetEditTextFeatures(final Button addButton, EditText text)
     {
-        text.addTextChangedListener(new TextWatcher()
-        {
+        text.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after)
-            {}
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count)
-            {}
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
 
             @Override
-            public void afterTextChanged(Editable s)
-            {
+            public void afterTextChanged(Editable s) {
                 String text = s.toString();
-                addButton.getBackground().setColorFilter(text.isEmpty() ? lightgrey : lightblue, PorterDuff.Mode.MULTIPLY);
+                addButton.getBackground().setColorFilter(text.isEmpty() ? getApplicationContext().getResources().getInteger(R.integer.lightgrey) : getApplicationContext().getResources().getInteger(R.integer.lightblue), PorterDuff.Mode.MULTIPLY);
             }
         });
     }
 
-    private void SetAddButtonFeatures(final Animation animAlpha, Button addButton)
+    private void SetAddButtonFeatures(final Animation animAlpha, final Button addButton)
     {
-        addButton.getBackground().setColorFilter(lightgrey, PorterDuff.Mode.MULTIPLY);
+        addButton.getBackground().setColorFilter(getApplicationContext().getResources().getInteger(R.integer.lightgrey), PorterDuff.Mode.MULTIPLY);
         addButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -115,11 +113,9 @@ public class ListingActivity extends AppCompatActivity implements AnimationEssen
                 String txt = text.getText().toString();
                 if (txt.isEmpty()) return;
                 v.startAnimation(animAlpha);
-                v.postDelayed(new Runnable()
-                {
+                v.postDelayed(new Runnable() {
                     @Override
-                    public void run()
-                    {
+                    public void run() {
                         EditText text = (EditText) findViewById(R.id.textItem);
                         String txt = text.getText().toString();
                         if (txt.isEmpty()) return;
@@ -128,29 +124,34 @@ public class ListingActivity extends AppCompatActivity implements AnimationEssen
                         ListAdapter theAdapter = new CustomAdapter(getApplicationContext(), list);
 
                         final ListView theListView = (ListView) findViewById(R.id.listShopping);
-                        theListView.setOnItemClickListener(new AdapterView.OnItemClickListener()
-                        {
+                        theListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                             @Override
-                            public void onItemClick(AdapterView<?> parent, View view, int position, long id)
-                            {
-                                if (pos != -1)
-                                {
+                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                if (pos != -1) {
                                     View v = theListView.getChildAt(pos);
-                                    if (v != null)
-                                    {
+                                    if (v != null) {
                                         v.setBackgroundColor(Color.WHITE);
                                     }
                                 }
                                 setPos(position);
-                                view.setBackgroundColor(lightblue);
+                                view.setBackgroundColor(getApplicationContext().getResources().getInteger(R.integer.lightblue));
                             }
                         });
                         theListView.setAdapter(theAdapter);
                     }
-                }, delay);
-                HideKeyboard();
+                }, getApplicationContext().getResources().getInteger(R.integer.delay));
+                if(getCurrentFocus() == findViewById(R.id.textItem))
+                {
+                    HideKeyboard();
+                }
             }
         });
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        findViewById(R.id.listShopping).requestFocus();
     }
 
     private void setPos(int position)
@@ -158,19 +159,19 @@ public class ListingActivity extends AppCompatActivity implements AnimationEssen
         pos = position;
         final Button removeButton = (Button) findViewById(R.id.removeButton);
         final Button editButton   = (Button) findViewById(R.id.editButton);
-        removeButton.getBackground().setColorFilter(pos==-1 ? lightgrey : lightblue, PorterDuff.Mode.MULTIPLY);
-        editButton.getBackground().setColorFilter(pos==-1 ? lightgrey : lightblue, PorterDuff.Mode.MULTIPLY);
+        removeButton.getBackground().setColorFilter(pos == -1 ? getApplicationContext().getResources().getInteger(R.integer.lightgrey) : getApplicationContext().getResources().getInteger(R.integer.lightblue), PorterDuff.Mode.MULTIPLY);
+        editButton.getBackground().setColorFilter(pos == -1 ? getApplicationContext().getResources().getInteger(R.integer.lightgrey) : getApplicationContext().getResources().getInteger(R.integer.lightblue), PorterDuff.Mode.MULTIPLY);
     }
 
     private void HideKeyboard()
     {
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.toggleSoftInput(InputMethodManager.RESULT_HIDDEN, 0);
+        imm.toggleSoftInput(InputMethodManager.HIDE_NOT_ALWAYS, 0);
     }
 
     private void SetRemoveButtonFeatures(final Animation animAlpha, final Button removeButton)
     {
-        removeButton.getBackground().setColorFilter(lightgrey, PorterDuff.Mode.MULTIPLY);
+        removeButton.getBackground().setColorFilter(getApplicationContext().getResources().getInteger(R.integer.lightgrey), PorterDuff.Mode.MULTIPLY);
         removeButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -203,12 +204,12 @@ public class ListingActivity extends AppCompatActivity implements AnimationEssen
                                     }
                                 }
                                 setPos(position);
-                                view.setBackgroundColor(lightblue);
+                                view.setBackgroundColor(getApplicationContext().getResources().getInteger(R.integer.lightblue));
                             }
                         });
                         theListView.setAdapter(theAdapter);
                     }
-                }, delay);
+                }, getApplicationContext().getResources().getInteger(R.integer.delay));
 
             }
         });
@@ -216,7 +217,7 @@ public class ListingActivity extends AppCompatActivity implements AnimationEssen
 
     private void SetEditButtonFeatures(final Animation animAlpha, Button editButton)
     {
-        editButton.getBackground().setColorFilter(lightgrey, PorterDuff.Mode.MULTIPLY);
+        editButton.getBackground().setColorFilter(getApplicationContext().getResources().getInteger(R.integer.lightgrey), PorterDuff.Mode.MULTIPLY);
         editButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -230,11 +231,12 @@ public class ListingActivity extends AppCompatActivity implements AnimationEssen
                     public void run()
                     {
                         saveData();
+                        finish();
                         Intent intent = new Intent(getApplicationContext(), EditWindow.class);
                         intent.putExtra("position", pos);
                         startActivity(intent);
                     }
-                }, delay);
+                }, getApplicationContext().getResources().getInteger(R.integer.delay));
             }
         });
     }
@@ -258,14 +260,14 @@ public class ListingActivity extends AppCompatActivity implements AnimationEssen
                     }
                 }
                 setPos(position);
-                view.setBackgroundColor(lightblue);
+                view.setBackgroundColor(getApplicationContext().getResources().getInteger(R.integer.lightblue));
             }
         });
     }
 
     private void SetBackButtonFeatures(Button backButton, final Animation animAlpha)
     {
-        backButton.getBackground().setColorFilter(lightblue, PorterDuff.Mode.MULTIPLY);
+        backButton.getBackground().setColorFilter(getApplicationContext().getResources().getInteger(R.integer.lightblue), PorterDuff.Mode.MULTIPLY);
         backButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -281,7 +283,7 @@ public class ListingActivity extends AppCompatActivity implements AnimationEssen
                         Intent intent = new Intent(v.getContext(), MainActivity.class);
                         startActivity(intent);
                     }
-                }, delay);
+                }, getApplicationContext().getResources().getInteger(R.integer.delay));
 
             }
         });
