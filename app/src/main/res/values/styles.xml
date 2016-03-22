@@ -33,7 +33,16 @@
         <item name="android:background">@drawable/mainmenubutton</item>
         <item name="android:layout_margin">5dp</item>
     </style>
-
+    <style name="mainmenubuttoninactive">
+        <item name="android:layout_width">150dp</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:background">#d3d3d3</item>
+        <item name="android:layout_margin">5dp</item>
+    </style>
+    <style name="listbutton">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:background">@drawable/mainmenubutton</item>
+    </style>
     <style name="FullscreenTheme" parent="AppTheme">
         <item name="android:actionBarStyle">@style/FullscreenActionBarStyle</item>
         <item name="android:windowActionBarOverlay">true</item>
